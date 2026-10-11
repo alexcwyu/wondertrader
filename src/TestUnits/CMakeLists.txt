@@ -19,6 +19,10 @@ SET(LIBS
 IF (MSVC)
 ELSE(GNUCC)
     LIST(APPEND LIBS pthread boost_filesystem)
+	# GCC 8 ships C++17 filesystem in a separate library.
+	IF(CMAKE_CXX_COMPILER_ID STREQUAL "GNU" AND CMAKE_CXX_COMPILER_VERSION VERSION_LESS 9)
+		LIST(APPEND LIBS stdc++fs)
+	ENDIF()
 	IF(WIN32)
 		LIST(APPEND LIBS iconv)
 	ENDIF()

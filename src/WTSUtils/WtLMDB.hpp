@@ -66,11 +66,11 @@ public:
 #if _WIN32
 			_mkdir(path);
 #else
-			mkdir(path, 777);
+			mkdir(path, 0777);
 #endif
 		}
 
-		int _errno = mdb_env_create(&_env);
+		_errno = mdb_env_create(&_env);
 		if (_errno != MDB_SUCCESS)
 			return false;
 
@@ -80,7 +80,7 @@ public:
 
 		_errno = mdb_env_set_mapsize(_env, mapsize);
 
-		return true;
+		return _errno == MDB_SUCCESS;
 	}
 
 	inline void update_errno(int error) { _errno = error; }

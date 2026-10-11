@@ -3,7 +3,14 @@
 
 TEST(test_shm, test_sharehelper)
 {
-	EXPECT_TRUE(init_slave("uft", "E:\\deploy_uft\\uft_test\\.share"));
+	// Build the existing fixture locally instead of depending on a Windows deployment.
+	ASSERT_TRUE(init_master("uft_fixture", "./test.share"));
+	ASSERT_NE(allocate_int32("uft_fixture", "uft_demo", "offset", 1, true), nullptr);
+	ASSERT_NE(allocate_uint32("uft_fixture", "uft_demo", "freq", 0, true), nullptr);
+	ASSERT_NE(allocate_uint32("uft_fixture", "uft_demo", "second", 10, true), nullptr);
+	ASSERT_NE(allocate_double("uft_fixture", "uft_demo", "lots", 1.0, true), nullptr);
+	ASSERT_TRUE(commit_section("uft_fixture", "uft_demo"));
+	ASSERT_TRUE(init_slave("uft", "./test.share"));
 
 	//EXPECT_TRUE(set_string("test", "section", "string", "value"));
 	//EXPECT_TRUE(set_string("test", "section", "string", "value2"));

@@ -7,7 +7,7 @@ USING_NS_WTP;
 TEST(test_lmdb, test_constructor)
 {
 	WtLMDB* db = new WtLMDB();
-	EXPECT_TRUE(db->open("./testdb"));
+	ASSERT_TRUE(db->open("./testdb")) << db->errmsg();
 	delete db;
 }
 
@@ -16,7 +16,7 @@ TEST(test_lmdb, test_query)
 	{	
 		//–¥≤È—Ø
 		WtLMDB db(false);
-		EXPECT_TRUE(db.open("./testdb"));
+		ASSERT_TRUE(db.open("./testdb")) << db.errmsg();
 
 		WtLMDBQuery query(db);
 		EXPECT_FALSE(db.has_error());
@@ -34,7 +34,7 @@ TEST(test_lmdb, test_query)
 	{
 		//∂¡≤È—Ø
 		WtLMDB db(true);
-		EXPECT_TRUE(db.open("./testdb"));
+		ASSERT_TRUE(db.open("./testdb")) << db.errmsg();
 
 		WtLMDBQuery query(db);
 		EXPECT_FALSE(db.has_error());
@@ -86,7 +86,7 @@ TEST(test_lmdb, test_endian)
 	{
 		//–¥≤È—Ø
 		WtLMDB db(false);
-		EXPECT_TRUE(db.open("./endiandb"));
+		ASSERT_TRUE(db.open("./endiandb")) << db.errmsg();
 
 		WtLMDBQuery query(db);
 		EXPECT_FALSE(db.has_error());
@@ -105,7 +105,7 @@ TEST(test_lmdb, test_endian)
 	{
 		//∂¡≤È—Ø
 		WtLMDB db(true);
-		EXPECT_TRUE(db.open("./endiandb"));
+		ASSERT_TRUE(db.open("./endiandb")) << db.errmsg();
 
 		WtLMDBQuery query(db);
 		EXPECT_FALSE(db.has_error());
