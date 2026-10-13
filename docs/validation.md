@@ -1,5 +1,11 @@
 # wondertrader: validation results
 
+<!-- current-documentation-provenance -->
+Documentation reviewed: 2026-10-13 / Git source base: `a9470813cedef7373bfe7e72ffeadf13d6484a75` / [Current architecture and feature guide](ayu-develop.md).
+Historical execution commands/results below retain their original dates and scope; this metadata update is not a new application test run.
+<!-- /current-documentation-provenance -->
+
+
 All native targets built and the complete supplied unit binary passed on Linux/amd64.
 
 ## Verified scope
